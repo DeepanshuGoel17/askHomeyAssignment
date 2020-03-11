@@ -1,0 +1,20 @@
+button{
+    border: none;
+    background-color    : #000000;
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+.danger{
+    background-color: #d21d1d;;
+}
+.success{
+    background-color: #75d21d;
+}
+.primary{
+    background-color: #201dd2;
+}
+.disabled{
+    background-color: darkgrey;
+}

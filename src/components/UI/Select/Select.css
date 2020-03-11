@@ -1,0 +1,7 @@
+label{
+    width: 150px;
+    display: inline-block;
+}
+.Invalid{
+    border: solid 1px #ec0909;
+}
