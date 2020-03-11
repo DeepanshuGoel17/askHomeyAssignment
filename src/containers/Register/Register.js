@@ -8,6 +8,7 @@ import Select from '../../components/UI/Select/Select';
 import './Register.css';
 
 class Register extends Component {
+    //variable to store the initial value of the order Form
      intialOrderForm =  {
         userId: {
             elementType: 'input',
@@ -32,7 +33,8 @@ class Register extends Component {
                 placeholder: 'Please enter  Quantity for the Order'
             },
             validation: {
-                required: true
+                required: true,
+                isPositive:true
             },
             value:'',
             valid: false,
@@ -47,7 +49,8 @@ class Register extends Component {
                 placeholder: 'Please enter Price per Kg'
             },
             validation: {
-                required: true
+                required: true,
+                isPositive:true
             },
             value:'',
             valid: false,
@@ -65,11 +68,14 @@ class Register extends Component {
             touched: false
         }
     }
+    // variable to refernce the form element in the html
     formEleRef;
+    // state for the Register Component
     state ={
     orderForm : JSON.parse(JSON.stringify(this.intialOrderForm)),
     formIsValid:false
 }
+// to handle the input Changes
     inputChangedHandler(event, inputIdentifier){
         const updatedOrderForm = {
             ...this.state.orderForm
@@ -87,6 +93,8 @@ class Register extends Component {
         }
         this.setState({orderForm: updatedOrderForm, formIsValid: formIsValid});
     }
+
+    // to check the validity for the input
     checkValidity(value, rules) {
         let isValid = true;
         if (!rules) {
@@ -95,6 +103,10 @@ class Register extends Component {
         
         if (rules.required) {
             isValid = value.trim() !== '' && isValid;
+        }
+
+        if (rules.isPositive) {
+            isValid = parseFloat(value) > 0 && isValid;
         }
 
         if (rules.minLength) {
@@ -107,6 +119,7 @@ class Register extends Component {
 
         return isValid;
     }
+    // to handle the order placed
     orderHandler = ( event ) => {
         event.preventDefault();
         if(this.state.formIsValid){

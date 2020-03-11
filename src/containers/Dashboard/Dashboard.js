@@ -8,11 +8,13 @@ import Register from '../Register/Register';
 import './Dashboard.css';
 
 class Dashboard extends Component {
+    // state for the Dashboard Component
     state = {
         buyerList: [],
         sellerList: [],
         showModal: false
     }
+    //Register Order form handler
     registerFormHandler = (orderDetails) => {
         let orderDetail = {};
         orderDetail.userId = orderDetails.userId.value;
@@ -25,6 +27,7 @@ class Dashboard extends Component {
             this.buyerHandler(orderDetail);
         }
     }
+    // to update the buyer list
     buyerHandler = (orderDetails) => {
         let buyerList = [...this.state.buyerList];
         if (buyerList.length) {
@@ -44,6 +47,7 @@ class Dashboard extends Component {
 
         this.setState({ buyerList });
     }
+    //to update the seller list
     sellerHandler = (orderDetails) => {
 
         let sellerList = [...this.state.sellerList];
@@ -63,6 +67,7 @@ class Dashboard extends Component {
         }
         this.setState({ sellerList });
     }
+    // to delete order
     deleteOrderHandler = ( type, price) => {
         let deleteOrderArr =[]
         if(type === "Sell"){
@@ -82,6 +87,8 @@ class Dashboard extends Component {
             this.setState({buyerList:deleteOrderArr})
         }
     }
+
+    // to handle the modal hide and show
     modalHandler = () => {
         this.setState((prevState, props) => {
             return {
